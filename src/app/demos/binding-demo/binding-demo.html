@@ -1,0 +1,20 @@
+<h2>Data binding</h2>
+
+<!-- Event binding: (input) runs a method on every keystroke -->
+<label>
+  Your name:
+  <input [value]="name()" (input)="onNameInput($event)" />
+</label>
+
+<!-- Interpolation: {{ }} prints a value as text -->
+<p>Hello, {{ name() }}! Your name has {{ name().length }} characters.</p>
+
+<!-- Class binding: [class.on] adds the class only while the expression is true -->
+<p class="card" [class.on]="highlighted()">This card is {{ highlighted() ? 'highlighted' : 'plain' }}.</p>
+<button (click)="toggleHighlight()">Toggle highlight</button>
+
+<!-- Property binding: [disabled] sets the DOM property from an expression -->
+<button [disabled]="clicks() >= 3" (click)="clicks.set(clicks() + 1)">
+  Click me ({{ 3 - clicks() }} left)
+</button>
+<button (click)="clicks.set(0)">Reset</button>

@@ -1,0 +1,36 @@
+<h2>&#64;if and &#64;for</h2>
+
+<button (click)="showList.set(!showList())">{{ showList() ? 'Hide' : 'Show' }} list</button>
+<button (click)="addFruit()">Add fruit</button>
+
+@if (showList()) {
+  <ul>
+    @for (fruit of fruits(); track fruit.id; let i = $index, last = $last) {
+      <li>
+        {{ i + 1 }}. {{ fruit.name }} @if (last) { <em>(last)</em> }
+        <button (click)="removeFruit(fruit.id)">x</button>
+      </li>
+    } @empty {
+      <li>No fruit left. Click "Add fruit".</li>
+    }
+  </ul>
+} @else {
+  <p>The list is hidden.</p>
+}
+
+<h2>&#64;switch</h2>
+<button (click)="status.set('idle')">Idle</button>
+<button (click)="status.set('loading')">Loading</button>
+<button (click)="status.set('error')">Error</button>
+
+@switch (status()) {
+  @case ('loading') {
+    <p>Loading...</p>
+  }
+  @case ('error') {
+    <p>Something went wrong.</p>
+  }
+  @default {
+    <p>Ready.</p>
+  }
+}

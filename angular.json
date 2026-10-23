@@ -1,0 +1,62 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "projects": {
+    "learning-app": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "index": "src/index.html",
+            "tsConfig": "tsconfig.json",
+            "styles": ["src/styles.css"],
+            "assets": [
+              { "glob": "**/*.{ts,html,css}", "input": "src", "output": "source/src" },
+              { "glob": "{package.json,angular.json,tsconfig.json,tsconfig.spec.json,.postcssrc.json}", "input": ".", "output": "source" },
+              { "glob": "{README.md,db.seed.json}", "input": "server", "output": "source/server" },
+              { "glob": "launch.json", "input": ".vscode", "output": "source/.vscode" }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            },
+            "test": {
+              "assets": []
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": { "buildTarget": "learning-app:build:production" },
+            "development": { "buildTarget": "learning-app:build:development" }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "buildTarget": "learning-app:build:development,test",
+            "tsConfig": "tsconfig.spec.json",
+            "runner": "vitest"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "d5f63f49-fd62-4784-8606-a399be7ab345"
+  }
+}

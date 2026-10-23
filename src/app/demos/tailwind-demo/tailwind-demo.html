@@ -1,0 +1,67 @@
+<div class="space-y-8">
+  <!-- 1. Spacing, color, typography, borders and shadows -->
+  <section>
+    <h3 class="mb-3 text-sm font-semibold tracking-wide text-slate-500 uppercase">Card</h3>
+    <div class="max-w-sm rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <p class="text-xs font-semibold text-brand-600">Lesson 1</p>
+      <p class="mt-1 text-lg font-bold text-slate-900">Signals in Angular</p>
+      <p class="mt-2 text-sm text-slate-600">Reactive values that tell Angular exactly what changed.</p>
+    </div>
+  </section>
+
+  <!-- 2. Responsive grid: 1 column on phones, 3 from the md breakpoint -->
+  <section>
+    <h3 class="mb-3 text-sm font-semibold tracking-wide text-slate-500 uppercase">Responsive grid</h3>
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+      <div class="rounded-lg bg-red-100 p-4 text-center text-sm font-medium text-red-800">grid-cols-1</div>
+      <div class="rounded-lg bg-fuchsia-100 p-4 text-center text-sm font-medium text-fuchsia-800">md:grid-cols-3</div>
+      <div class="rounded-lg bg-violet-100 p-4 text-center text-sm font-medium text-violet-800">gap-3</div>
+    </div>
+  </section>
+
+  <!-- 3. State variants: hover, focus, active, disabled -->
+  <section>
+    <h3 class="mb-3 text-sm font-semibold tracking-wide text-slate-500 uppercase">State variants</h3>
+    <div class="flex flex-wrap gap-3">
+      <button
+        class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700 focus:ring-4 focus:ring-brand-100 focus:outline-none active:scale-95"
+      >
+        Hover / focus / press me
+      </button>
+      <button disabled class="rounded-lg bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-400 disabled:cursor-not-allowed">
+        disabled
+      </button>
+    </div>
+  </section>
+
+  <!-- 4. Binding Tailwind classes from Angular state with [class] -->
+  <section>
+    <h3 class="mb-3 text-sm font-semibold tracking-wide text-slate-500 uppercase">Classes from Angular state</h3>
+    <div class="mb-3 inline-flex rounded-lg bg-slate-100 p-1">
+      @for (variant of variants; track variant) {
+        <button
+          (click)="selected.set(variant)"
+          class="rounded-md px-3 py-1.5 text-sm font-medium capitalize"
+          [class.bg-white]="selected() === variant"
+          [class.shadow-sm]="selected() === variant"
+          [class.text-slate-500]="selected() !== variant"
+        >
+          {{ variant }}
+        </button>
+      }
+    </div>
+    <div>
+      @switch (selected()) {
+        @case ('primary') {
+          <button class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white">Primary button</button>
+        }
+        @case ('outline') {
+          <button class="rounded-lg border-2 border-brand-600 px-4 py-2 text-sm font-semibold text-brand-600">Outline button</button>
+        }
+        @case ('ghost') {
+          <button class="rounded-lg px-4 py-2 text-sm font-semibold text-brand-600 hover:bg-brand-50">Ghost button</button>
+        }
+      }
+    </div>
+  </section>
+</div>

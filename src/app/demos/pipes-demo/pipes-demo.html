@@ -1,0 +1,10 @@
+<h2>Built-in pipes</h2>
+
+<p>date: 'medium' &rarr; {{ createdAt | date: 'medium' }}</p>
+<p>date: 'shortDate' &rarr; {{ createdAt | date: 'shortDate' }}</p>
+<p>date: 'EEEE, MMMM d' &rarr; {{ createdAt | date: 'EEEE, MMMM d' }}</p>
+<p>uppercase &rarr; {{ task.title | uppercase }}</p>
+<p>currency &rarr; {{ price | currency: 'USD' }}</p>
+<p>percent &rarr; {{ progress | percent }}</p>
+<p>json &rarr;</p>
+<pre>{{ task | json }}</pre>

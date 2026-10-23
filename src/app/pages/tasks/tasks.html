@@ -1,0 +1,42 @@
+<h2>Tasks</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <input formControlName="title" placeholder="What needs doing?" />
+  <button type="submit">{{ editingId() ? 'Save' : 'Add' }}</button>
+  @if (editingId()) {
+    <button type="button" (click)="cancelEdit()">Cancel</button>
+  }
+  @if (title.invalid && title.touched) {
+    <p class="error">
+      @if (title.hasError('required')) {
+        Title is required.
+      } @else {
+        Title must be at least 3 characters.
+      }
+    </p>
+  }
+</form>
+
+<input type="search" [formControl]="search" placeholder="Search tasks" />
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (loading()) {
+  <p>Loading...</p>
+} @else if (tasks().length === 0 && !error()) {
+  <p>No tasks found.</p>
+} @else {
+  <ul>
+    @for (task of tasks(); track task.id) {
+      <li [class.done]="task.done">
+        <input type="checkbox" [checked]="task.done" (change)="toggle(task)" />
+        <span class="title">{{ task.title }}</span>
+        <small>{{ task.createdAt | date: 'medium' }}</small>
+        <button (click)="startEdit(task)">Edit</button>
+        <button (click)="remove(task)">Delete</button>
+      </li>
+    }
+  </ul>
+}

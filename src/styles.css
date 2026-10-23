@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* Design tokens: every --color-brand-* value becomes utilities like bg-brand-600 or text-brand-500. */
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  --color-brand-50: #fdf2fa;
+  --color-brand-100: #fbe4f6;
+  --color-brand-500: #d6339b;
+  --color-brand-600: #c2187f;
+  --color-brand-700: #a10f68;
+}
+
+/*
+ * Preflight (Tailwind's reset) strips the default look of buttons and inputs.
+ * The learning examples use plain HTML, so give them simple styles inside .demo-surface.
+ * Only elements without a class attribute are touched, so Tailwind-styled elements keep their own look.
+ */
+@layer base {
+  .demo-surface h2:not([class]) {
+    @apply mb-3 text-xl font-semibold;
+  }
+
+  .demo-surface p:not([class]) {
+    @apply my-2;
+  }
+
+  .demo-surface pre:not([class]) {
+    @apply rounded-md bg-slate-100 p-3 font-mono text-sm;
+  }
+
+  .demo-surface button:not([class]) {
+    @apply cursor-pointer rounded-md border border-slate-300 bg-white px-3 py-1 text-sm font-medium text-slate-700 shadow-xs hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  /* Inline `code` in lesson text, which is rendered with [innerHTML]. */
+  .lesson-prose code {
+    @apply rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[0.85em] text-brand-700;
+  }
+
+  .demo-surface input:not([class]):not([type='checkbox']) {
+    @apply rounded-md border border-slate-300 px-3 py-1.5 text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-100 focus:outline-none;
+  }
+}

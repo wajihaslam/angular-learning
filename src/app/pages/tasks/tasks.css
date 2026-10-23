@@ -1,0 +1,29 @@
+form,
+input[type='search'] {
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.title {
+  flex: 1;
+}
+
+.done .title {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.error {
+  color: crimson;
+}
